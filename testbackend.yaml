@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-collection-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-collection-backend
+  template:
+    metadata:
+      labels:
+        app: order-collection-backend
+    spec:
+      containers:
+      - name: order-collection
+        image: image_path
+        envFrom:
+        - configMapRef:
+            name: configordercollection
+        ports:
+        - containerPort: 8000
+      
